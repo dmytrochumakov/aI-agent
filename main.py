@@ -11,6 +11,7 @@ if len(args) == 1:
     sys.exit(1)
 
 user_prompt = args[1]
+verbose_is_on = (len(args) >= 3 and args[2] == "--verbose")
 
 messages = [
     types.Content(role="user", parts=[types.Part(text=user_prompt)]),
@@ -23,6 +24,8 @@ client = genai.Client(api_key=api_key)
 response = client.models.generate_content(
     model='gemini-2.0-flash-001', contents=messages
 )
-print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
-print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
-print(response.text)
+if (verbose_is_on):
+    print(f"User prompt: {user_prompt}")
+    print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
+    print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
+
