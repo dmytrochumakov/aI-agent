@@ -1,29 +1,15 @@
-from functions.get_files_info import get_files_info
+from functions.get_file_content import get_file_content
 
-def main():
-    try:
-        result = get_files_info("calculator", ".")
-        print(result)            
-    except Exception as e:
-        print(e)
+def test():
+    result = get_file_content("calculator", "main.py")
+    print(result)
 
-    try:
-        result = get_files_info("calculator", "pkg")
-        print(result)            
-    except Exception as e:
-        print(e)
+    result = get_file_content("calculator", "pkg/calculator.py")
+    print(result)
 
-    try:
-        result = get_files_info("calculator", "/bin")
-        print(result)            
-    except Exception as e:
-        print(e)
+    result = get_file_content("calculator", "/bin/cat")
+    print(result)
 
-    try:
-        result = get_files_info("calculator", "../")
-        print(result)            
-    except Exception as e:
-        print(e)
 
 if __name__ == "__main__":
-    main()
+    test()
